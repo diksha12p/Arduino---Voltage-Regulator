@@ -4,9 +4,14 @@
 :Revision: version#
 :License: Public Domain
 
-= Project: {Project}
+= Project: {DESIGNING OF A POWER SUPPLY (FIXED AND VARIABLE) with DATA LOGGING UNIT}
 
-“DESIGNING OF A POWER SUPPLY (FIXED AND VARIABLE) with DATA LOGGING UNIT”
+=== Project Description
+•	Regulated DC power supply 12 V / 3A source. The power supply converts the (220-230) V AC into (12 V – 3A) DC output.
+•	The power supply also provides 5V DC.
+•	This project provides the facility of data logging (with Arduino).
+•	The project is extremely light weight, compact and innovative.
+
 
 
 === Bill of Materials
