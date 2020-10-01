@@ -1,0 +1,69 @@
+/*
+
+*/
+#include <SD.h> 
+#include <TimerOne.h>
+
+time intervals.
+#include <SPI.h>
+
+#define chipSelect 10
+#define potentiometerSwiperPin 0 
+
+
+volatile float sensorValue;
+volatile float sensorTime;
+volatile byte sensorFlag;
+
+void setup()
+{
+Serial.begin(9600); 
+Serial.print("Initializing SD card...");
+
+pinMode(chipSelect, OUTPUT); 
+
+if (!SD.begin(chipSelect)) { 
+Serial.println("Card failed, or not present");
+return; 
+}
+Serial.println("card initialized.");
+
+9
+
+if (SD.exists("datalog.txt")) 
+{
+SD.remove("datalog.txt");
+}
+Timer1.initialize(500000); 
+Timer1.attachInterrupt(readoutPotentiometer); 
+
+
+void loop()
+{
+String dataString = "";
+if (sensorFlag == 1) 
+{
+dataString = String(sensorTime) + String(",") + String(sensorValue); 
+consisting of the time and the sensor reading at that time
+
+File dataFile = SD.open("datalog.txt", FILE_WRITE);
+sensorFlag = 0; 
+
+if (dataFile) { 
+dataFile.println(dataString);
+dataFile.close(); 
+Serial.println(dataString);
+}
+
+else {
+Serial.println("error opening datalog.txt");
+}
+}
+}
+
+void readoutPotentiometer()
+sensorValue = analogRead(potentiometerSwiperPin);
+sensorValue = ((sensorValue * 5.0) / 1024.0) * 4.25;
+sensorTime = 0.001 * millis(); 
+sensorFlag = 1; 
+}
